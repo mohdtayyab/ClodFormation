@@ -509,7 +509,7 @@
     WordpressDB:
       Type: AWS::RDS::DBCluster
       Properties:
-        DatabaseName: wordpress-qa
+        DatabaseName: wordpressQA
         Engine: aurora
         EngineMode: serverless
         ScalingConfiguration:
