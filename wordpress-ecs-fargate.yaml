@@ -522,8 +522,7 @@
         EnableHttpEndpoint: true
         StorageEncrypted: true
         DBSubnetGroupName: !Ref DBSubnetGroup
-        VPCSecurityGroups:
-          - !Ref DBSecurityGroup
+        
     ALBSecurityGroup:
       Type: AWS::EC2::SecurityGroup
       Properties:
