@@ -507,21 +507,23 @@
           CidrIp: 10.0.0.0/16
 
     WordpressDB:
-      Type: AWS::RDS::DBInstance
+      Type: AWS::RDS::DBCluster
       Properties:
-        DBInstanceIdentifier: wordpress-qa
-        DBInstanceClass: db.t2.medium
-        DBName: wordpress
-        Engine: mysql
-        MultiAZ: false
-        MasterUserPassword: ZVvu54N,):Rj%xVd
+        DatabaseName: wordpress-qa
+        Engine: aurora
+        EngineMode: serverless
+        ScalingConfiguration:
+          AutoPause: true
+          MaxCapacity: 2
+          MinCapacity: 1
+          SecondsUntilAutoPause: 300 
+        MasterUserPassword: supersecretpassword
         MasterUsername: admin
-        PubliclyAccessible: false
-        AllocatedStorage: 20
+        EnableHttpEndpoint: true
+        StorageEncrypted: true
         DBSubnetGroupName: !Ref DBSubnetGroup
         VPCSecurityGroups:
           - !Ref DBSecurityGroup
-
     ALBSecurityGroup:
       Type: AWS::EC2::SecurityGroup
       Properties:
